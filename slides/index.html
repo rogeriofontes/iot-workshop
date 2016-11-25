@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Wildfly Swarm! Rocks.</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-color="#ffffff">
+				<h5>Como transformar um projeto JEE em um micro-serviço com o wildfly-swarm.</h5>
+					<img data-src="img/swarm_logo_final.png">
+					<p>
+						<small>Palestrante: <a href="http://rogeriofontes.inf.br" target="_blank">Rogério Fontes</a> / <a href="http://twitter.com/rogeriofontes" target="_blank">@rogeriofontes</a></small>
+					</p>
+				</section>
+
+				<section data-background-color="#ffffff">
+					<h5>Sobre o palestrante:</h5>
+					<p>Apaixonado em maneiras e formas ágeis de criar código fonte. Programando sempre tomando um bom café e escutando um belo e pesado rock`n roll. Trabalha a mais de 10 anos com java e linux, passando por android, python, php e agora com o coração no angular.js e node.js. Professor universitário de redes de computadores, Java, Análise de Sistemas e dispositivos móveis. Jugleader e co-fundador do uaijug (grupo de usuários do triângulo mineiro) e também co-fundador do triângulo hackerspace. Além disso aventurando como Empreendedor e trabalha como Arquiteto de software no comdominiodigital, projeto da digitos.</p>
+				</section>
+
+				<section data-background-color="#ffffff">
+					<a href="http://www.uaijug.com.br/" target="_blank"><img data-src="img/uaijug-300.png" width="150" height="150"></a>
+					<a href="http://www.triangulohackerspace.net.br/" target="_blank"><img data-src="img/150px-Logo_triangulohs.png" width="150" height="150"></a>
+				</section>
+
+				<section data-background-color="#ffffff">
+					<h5>O que podemos fazer?</h5>
+					<p>Com o WildFly Swarm, podemos empacotar nossa aplicação JEE e rodá-la de forma simples e descomplicada, sem precisar configurar um servidor de aplicação completo e ainda podemos rodar rapidamente nossa aplicação. Com isso podemos criar um micro-serviço de forma rápida, performatica e eficaz usando nossa aplicações JEE</p>
+					<!--img data-src="img/NSD_Node.js-Stack.png"-->
+				</section>
+
+				 <section data-background-color="#ffffff">
+					<h5>O que é wildfly?</h5>
+					<p>Wildfly é o servidor de aplicação JEE Open Source da comunidade JBoss.
+Um servidor de aplicação deve permitir a implantação("deploy") de aplicações que sigam os padrões JEE.
+O Wildfly tem uma arquitetura modular e vem com ótimas ferramentas de gerenciamento, recursos para criação de clusters(alta disponibilidade).</p>
+					<!--img data-src="img/NSD_Node.js-Stack.png"-->
+				</section>
+
+				<section data-background-color="#ffffff">
+					<h2>O que é Wildfly Swarm?</h2>
+					<p>É um projeto que pode ser usado para fornecer em únicos arquivos (jars), somente o que sua aplicação precisa do Wildfly. E empacotando o que for necessário em um uberjar o que é preciso para executar essa aplicação. </p>
+					<!--img data-src="img/NSD_Node.js-Stack.png"-->
+				</section>
+
+				<section data-background-color="#ffffff">
+					<h5>O que é uberjar?</h5>
+					<img data-src="img/swarm-uberjar.png" height="500" width="700">
+				</section>
+
+				<section data-background-color="#ffffff">
+					<h2>O que oferece?</h2>
+					<p>WildFly Swarm, oferece uma abordagem inovadora para empacotar e rodar Aplicações Java EE empacotando apenas o suficiente  do servidor para rodar sua aplicação em um jar.  Ele também é compatível com MicroProfile. <br /> <small>(Tradução livre)</small></p>
+					<a href="http://wildfly-swarm.io/">http://wildfly-swarm.io/</a>
+				</section>
+
+				<section data-background-color="#ffffff">
+					<h5>O que é MicroProfile?</h5>
+					<img style="background-color: #000000" data-src="img/microprofile.png" height="150" width="800"><br />
+					<a href="http://microprofile.io/">http://microprofile.io/</a><br />
+					<a href="http://developers.redhat.com/blog/2016/06/27/microprofile-collaborating-to-bring-microservices-to-enterprise-java/">http://developers.redhat.com/blog/2016/06/27/microprofile-collaborating-to-bring-microservices-to-enterprise-java/</a>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section data-background-color="#ffffff">
+					<section>
+						<h5>Olá Mundo, usando RESTful com Wildfly Swarm.</h5>
+						<img data-src="img/hello_world.gif" height="200" width="600"><br />
+					</section>
+					<section>
+						<h2>Gerando a Aplicação?</h2>
+						<img data-src="img/swarm-generator.png" height="300" width="400"><br />
+						<p style="font-size:22px;">
+							<ul>
+								<li>Entre no site: <a href="http://wildfly-swarm.io/generator/">http://wildfly-swarm.io/generator/</a></li>
+								<li>Selecione as dependências</li>
+								<li>Gere o projeto</li>
+								<li>Importe no Eclipse como projeto maven</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<h2>Estrutura do Projeto</h2>
+						<img data-src="img/estrutura-projeto.png" width="500" height="450">
+						<p style="font-size:30px;">Para rodar</p>
+						<br>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Plugin Wildfly-Swarm</h2>
+							<pre><code>
+<build>
+	<finalName>demo</finalName>
+	<plugins>
+	 <plugin>
+		 <groupId>org.wildfly.swarm</groupId>
+		 <artifactId>wildfly-swarm-plugin</artifactId>
+		 <version>${version.wildfly.swarm}</version>
+		 <executions>
+			<execution>
+			 <goals>
+				<goal>package</goal>
+			 </goals>
+		 </execution>
+	  </executions>
+  </plugin>
+</plugins>
+								</build></code>
+							</pre>
+						<br>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Dependências Wildfly-Swarm</h2>
+							<pre><code>
+<dependencies>
+	 <!-- Java EE 7 dependency -->
+	 <dependency>
+		 <groupId>javax</groupId>
+		 <artifactId>javaee-api</artifactId>
+		 <version>7.0</version>
+		 <scope>provided</scope>
+	 </dependency>
+	 <!-- WildFly Swarm Fractions -->
+	 <dependency>
+		 <groupId>org.wildfly.swarm</groupId>
+		 <artifactId>cdi-jaxrsapi</artifactId>
+	 </dependency>
+ </dependencies>
+							</code></pre>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Endpoint Simples</h2>
+						<pre><code>
+package helloday.helloday.rest;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+
+@Path("/hello")
+public class HelloWorldEndpoint {
+
+	@GET
+	@Produces("text/plain")
+	public Response doGet() {
+		return Response.ok("Hello from WildFly Swarm!").build();
+	}
+}
+						</code></pre>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Como Rodar o Projeto</h2>
+						<p style="font-size:30px;">Para rodar pelo maven:</p>
+						<pre>mvn clean package wildfly-swarm:run</pre>
+						<p style="font-size:30px;">Para rodar fazendo build da aplicação:</p>
+						<pre>mvn clean package<br />java -jar target/yourpackage-swarm.jar</pre>
+
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Sou fã do docker, e ai?</h2>
+						<p style="font-size:30px;">Para rodar com o docker:</p>
+						<p style="font-size:30px;"><small>Para rodar com o docker crie um arquivo chamado helloword, com a seginte estrutura:</small></p>
+						<pre>
+FROM java:openjdk-8-jdk
+ADD target/helloworld-swarm-0.0.1-SNAPSHOT-swarm.jar
+/opt/helloworld-swarm.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/opt/helloworld-swarm.jar"]</pre>
+						<p style="font-size:30px;">Para rodar fazendo com o docker:</p>
+						<pre>docker build -t helloworld .<br />docker run -d -p 8080:8080 [id da imagem]</br>docker logs -f [id da imagem]</pre>
+
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Rodando no Navegador</h2>
+						<img data-src="img/run.png">
+						<a href="#/2">
+						</a>
+					</section>
+				</section>
+
+
+			<section data-background-color="#ffffff">
+				 	<section>
+						<h2>Wildfly Swarm x Spring boot</h2>
+						<p><small>O que falar sobre a diferenças?<br />
+						<a href="http://ksoong.org/wildfly-swarm-spring-boot" target="_blank">Leia mais, nesse artigo</a></small></p>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>Estrutura da aplicação é bem semelhante</h2>
+						<img data-src="img/gs-rest-service-code.png">
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h2>o build e o deploy é semelhante</h2>
+						<p>Para fazer build rodar um Hello World no wildfly Swarm com RESTful web service:
+<pre><code>
+$ cd wildfly-swarm/
+$ mvn clean install
+$ java -jar target/gs-rest-service-swarm.jar
+</pre></code>
+</p>
+<p>Para fazer build rodar um Hello World no spring boot com RESTful web service:
+<pre><code>
+$ cd spring-boot
+$ mvn clean install
+$ java -jar target/gs-rest-service.jar
+</pre></code></p>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h5>Para rodar os dois framework, por default, não precisam passar o contexto:</h5>
+						<p>
+							http://localhost:8080/greeting <br /> http://localhost:8080/greeting?name=User
+						</p>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h5>Jar final no swarm é maior e mais complexo que no spring boot</h5>
+						<p>
+							<ul style="font-size: 30px">
+							  <li><medium>WildFly Swarm é 3 vezes que o Spring boot em tamanho</medium></li>
+							  <li>WildFly Swarm é 5 vezes que o Spring boot em número de jars</li>
+							  <li>WildFly Swarm é 5 vezes que o Spring boot em número de arquivos</li>
+							  <li>WildFly Swarm é 30 vezes que o Spring boot em número de directorios</li>
+							</ul>
+						</p>
+						<a href="#/2">
+						</a>
+					</section>
+					<section>
+						<h5>O que isso se deve?</h5>
+						<p style="font-size: 30px">Isso se deve por causa do class loading do framework, WildFly Swarm usa JBoss Modules que é mais modular e dinâmico. O Spring Boot usa tradicional o mecanismo de class loading, o flat class loading.
+<br /><br />
+Por que o WildFly Swarm e mais complexo em sua arquitetura?
+O classe loading dos modulos do Jboss são mais complexos que o tradicional flat class loading framework, a execução da camada de aplicação. Além disso, WildFly é mais complexo quem tomcat/jetty/undertow.</p>
+						<a href="#/2">
+						</a>
+					</section>
+				<!--img data-src="img/NSD_Node.js-Stack.png"-->
+			</section>
+
+			<section data-background-color="#ffffff">
+				<h5>Demo</h5>
+				<img data-src="img/freebsd_daemon.jpg" height="500" width="400">
+			</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
